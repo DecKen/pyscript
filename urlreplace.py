@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+# 将网页里面的相对链接转换成绝对链接
 import re
 from urlparse import urljoin
 
@@ -15,6 +16,6 @@ def replm(m):
     site = "http://hdq.me"
     match_url = m.group(2)
     if "://" not in match_url:  # 不含://来的链接是相对路径
-        match_url = urljoin(site, match_url)
-    return m.group(1) + match_url + m.group(3)
+        new_url = urljoin(site, match_url)
+    return m.group(1) + new_url + m.group(3)
 print p.sub(replm, s)
